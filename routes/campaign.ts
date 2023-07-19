@@ -175,8 +175,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export function authenticateUser(req: any, res: any, next: any) {
-  const token = req.headers.authorization;
+export async function authenticateUser(req: any, res: any, next: any) {
+  const token = await req.headers.authorization;
   console.log(req.headers);
   console.log("token" + token);
   if (!token) {

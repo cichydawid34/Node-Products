@@ -9,17 +9,8 @@ const { body, validationResult } = require("express-validator");
 //POST Add User
 router.post(
   "/register",
-  body("companyName")
-    .notEmpty()
-    .withMessage("name required")
-    .withMessage("must be an valid name"),
-  body("password")
-    .notEmpty()
-    .withMessage("password required")
-    .isLength({ min: 3 })
-    .withMessage("password must be at least 6 chars long")
-    .matches(/[!@#$%^&*(),.?":{}|<>]/)
-    .withMessage("your password should have at least one special character"),
+  body("companyName").notEmpty().withMessage("name required"),
+  body("password").notEmpty().withMessage("password required"),
   async (req: any, res: any) => {
     var err = validationResult(req);
     if (!err.isEmpty()) return res.status(400).send(err);

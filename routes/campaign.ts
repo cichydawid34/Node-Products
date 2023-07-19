@@ -177,6 +177,7 @@ router.delete("/:id", async (req, res) => {
 
 export function authenticateUser(req: any, res: any, next: any) {
   const authHeader = req.headers.authorization;
+  console.log(req.headers);
   const token = authHeader.split(" ")[1];
   console.log("token" + token);
   if (!token) {

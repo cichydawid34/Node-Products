@@ -9,13 +9,12 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://cichytask.netlify.app/"
-  );
-  next();
-});
+app.use(
+  cors({
+    origin: "https://cichytask.netlify.app",
+    credentials: true,
+  })
+);
 
 //Routes
 

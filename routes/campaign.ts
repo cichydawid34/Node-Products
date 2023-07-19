@@ -176,7 +176,8 @@ router.delete("/:id", async (req, res) => {
 });
 
 export function authenticateUser(req: any, res: any, next: any) {
-  const token = req.cookies.jwtToken;
+  const authHeader = req.headers.authorization;
+  const token = authHeader.split(" ")[1];
   console.log("token" + token);
   if (!token) {
     return res.status(401).send("Unauthorized");

@@ -11,7 +11,7 @@ router.post("/", authenticateUser, async (req: any, res: any) => {
   if (!err.isEmpty()) return res.status(400).send(err);
 
   // Get the user ID from the JWT token
-  const token = req.cookies.jwtToken;
+  const token = req.headers.authorization;
   const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
   const userId = decodedToken._id;
 
@@ -175,8 +175,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export async function authenticateUser(req: any, res: any, next: any) {
-  const token = await req.headers.authorization;
+export function authenticateUser(req: any, res: any, next: any) {
+  const token = req.headers.authorization;
   console.log(req.headers);
   console.log("token" + token);
   if (!token) {

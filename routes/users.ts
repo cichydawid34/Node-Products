@@ -87,7 +87,7 @@ router.post("/emerald-account", authenticateUser, async (req: any, res) => {
 });
 
 export function authenticateUser(req: any, res: any, next: any) {
-  const token = req.cookies.jwtToken;
+  const token = req.headers.authorization;
   if (!token) {
     return res.status(401).send("Unauthorized no token");
   }
